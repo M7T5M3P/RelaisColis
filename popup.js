@@ -20,6 +20,13 @@ function populateClientList() {
     .join('');
 }
 
+function standardizePhoneNumber(phoneNumber) {
+  if (phoneNumber.startsWith("+33")) {
+    return phoneNumber.replace("+33", "0");
+  }
+  return phoneNumber;
+}
+
 document.getElementById('fileInput').addEventListener('change', async (event) => {
   const file = event.target.files[0];
   originalFile = file;
@@ -28,7 +35,6 @@ document.getElementById('fileInput').addEventListener('change', async (event) =>
   clients = analyzeData(text);
 
   localStorage.setItem('clientsData', JSON.stringify(clients));
-  console.log('Clients data saved:', clients);
 
   populateClientList();
 });
@@ -50,6 +56,8 @@ document.getElementById('clientList').addEventListener('click', (event) => {
   const [firstName, ...lastNameParts] = selectedClient.data["buyer-name"].split(" ");
   selectedClient.data["firstName"] = firstName;
   selectedClient.data["lastName"] = lastNameParts.join(" ");
+  selectedClient.data["email"] = "livreokaz@yahoo.com";
+  selectedClient.data["buyer-phone-number"] = standardizePhoneNumber(selectedClient.data["buyer-phone-number"]);
 
   if (selectedClient.data["firstName"] === "" && selectedClient.data["lastName"] !== "") {
     selectedClient.data["firstName"] = selectedClient.data["lastName"];

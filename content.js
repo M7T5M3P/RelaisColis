@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         "ship-address-1": "#address_recipient_street",
         "ship-postal-code": "#address_recipient_postcode",
         "ship-city": "#address_recipient_city",
-        "buyer-email": "#address_recipient_email",
+        "email": "#address_recipient_email",
         "buyer-phone-number": "#address_recipient_mobilePhoneNumber",
       };
   
