@@ -35,14 +35,19 @@ function standardizePhoneNumber(phoneNumber) {
 
 document.getElementById('fileInput').addEventListener('change', async (event) => {
   const file = event.target.files[0];
+  if (!file) {
+    console.error("No file selected");
+    return; // Exit if no file is selected
+  }
   originalFile = file;
-  const text = await file.text();
-
-  clients = analyzeData(text);
-
-  localStorage.setItem('clientsData', JSON.stringify(clients));
-
-  populateClientList();
+  try {
+    const text = await file.text();
+    clients = analyzeData(text);
+    localStorage.setItem('clientsData', JSON.stringify(clients));
+    populateClientList();
+  } catch (error) {
+    console.error("Error reading file:", error);
+  }
 });
 
 document.getElementById('clientList').addEventListener('click', (event) => {
