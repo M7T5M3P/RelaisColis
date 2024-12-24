@@ -21,11 +21,14 @@ function populateClientList() {
 }
 
 function standardizePhoneNumber(phoneNumber) {
-  if (phoneNumber.startsWith("+33")) {
-    return phoneNumber.replace("+33", "0");
-  }
   if (phoneNumber.includes(" ")) {
-    return phoneNumber.replace(/ /g, "");
+    phoneNumber.replace(/ /g, "");
+  }
+  if (phoneNumber.startsWith("+33")) {
+    phoneNumber.replace("+33", "0");
+  }
+  if (phoneNumber.startsWith("00")) {
+    phoneNumber.replace("00", "0");
   }
   return phoneNumber;
 }
