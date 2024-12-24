@@ -22,13 +22,13 @@ function populateClientList() {
 
 function standardizePhoneNumber(phoneNumber) {
   if (phoneNumber.includes(" ")) {
-    phoneNumber.replace(/ /g, "");
+    phoneNumber = phoneNumber.replace(/ /g, "");
   }
   if (phoneNumber.startsWith("+33")) {
-    phoneNumber.replace("+33", "0");
+    phoneNumber = phoneNumber.replace("+33", "0");
   }
   if (phoneNumber.startsWith("00")) {
-    phoneNumber.replace("00", "0");
+    phoneNumber = phoneNumber.replace("00", "0");
   }
   return phoneNumber;
 }
